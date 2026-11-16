@@ -1,0 +1,648 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background: #000;
+    color: white;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* ================================= */
+/* MENU PRINCIPAL                    */
+/* ================================= */
+
+
+#menu {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.logo {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+
+.logo h1 {
+    color: #720f25;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: normal;
+    letter-spacing: 5px;
+    text-shadow: 0 0 20px rgba(114, 15, 37, 0.25);
+}
+
+
+/* ================================= */
+/* OPÇÕES                            */
+/* ================================= */
+
+
+.opcoes {
+    position: absolute;
+    top: 55%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 55px;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+
+.opcoes button {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-family: inherit;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: color 0.3s, letter-spacing 0.3s;
+}
+
+
+.opcoes button:hover {
+    color: #fff;
+    letter-spacing: 5px;
+}
+
+
+/* DESAPARECIMENTO DAS OPÇÕES */
+
+
+#menu.saindo .opcoes {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* ================================= */
+/* SUBIDA DA LOGO                    */
+/* ================================= */
+
+
+#menu.logo-subindo .logo {
+    animation: subirLogo 4.5s ease-in forwards;
+}
+
+
+@keyframes subirLogo {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-150vh);
+    }
+}
+
+
+/* ================================= */
+/* IMAGEM DA TRANSIÇÃO               */
+/* ================================= */
+
+
+#transicao {
+    position: fixed;
+    inset: 0;
+    display: none;
+    overflow: hidden;
+    background: #000;
+    z-index: 5;
+}
+
+
+#imagem-transicao {
+    position: absolute;
+    width: 100vw;
+    height: auto;
+    left: 50%;
+    top: 45vh;
+    transform: translateX(-50%);
+    display: block;
+}
+
+
+/* SUBIDA DA IMAGEM */
+
+
+#transicao.subindo #imagem-transicao {
+    animation: subirImagem 20s ease-in forwards;
+}
+
+
+@keyframes subirImagem {
+    from {
+        top: 45vh;
+    }
+
+    to {
+        top: calc(100vh - 149.0566vw + 6vh);
+    }
+}
+
+
+/* ================================= */
+/* TEXTOS DA INTRODUÇÃO              */
+/* ================================= */
+
+
+#textos-intro {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 25px;
+    padding: 40px;
+
+    text-align: center;
+    pointer-events: none;
+}
+
+
+#textos-intro p {
+    max-width: 950px;
+    color: #E6E2A5;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+
+    opacity: 0;
+    -webkit-text-stroke: 0.7px #000;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 1);
+}
+
+
+/* FADE IN DOS TEXTOS */
+
+
+#texto-1.aparecendo {
+    animation: fadeInTexto 2.5s ease forwards;
+}
+
+
+#texto-2.aparecendo {
+    animation: fadeInTexto 2.5s ease forwards;
+}
+
+
+#texto-3.aparecendo {
+    animation: fadeInTexto 3s ease forwards;
+}
+
+
+#texto-4.aparecendo {
+    animation: fadeInTexto 3s ease forwards;
+}
+
+
+@keyframes fadeInTexto {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* FADE OUT DOS TEXTOS */
+
+
+#textos-intro.desaparecendo p {
+    animation: fadeOutTexto 3.5s ease forwards;
+}
+
+
+@keyframes fadeOutTexto {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+/* ================================= */
+/* ESCURECIMENTO FINAL               */
+/* ================================= */
+
+
+#fade-final {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+
+#transicao.escurecendo #fade-final {
+    animation: fadeFinal 5s ease forwards;
+}
+
+
+@keyframes fadeFinal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ================================= */
+/* SEGUNDO TAKE: CINEMA E PÔSTER     */
+/* ================================= */
+
+
+#take-dois {
+    position: fixed;
+    inset: 0;
+    display: none;
+    overflow: hidden;
+    background: #000;
+    z-index: 30;
+}
+
+
+/* PÔSTER ATRÁS DO CINEMA */
+
+
+#poster-evelyn {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000;
+    opacity: 0;
+}
+
+
+#poster-evelyn img {
+    height: 100vh;
+    max-width: 100vw;
+    width: auto;
+
+    object-fit: contain;
+    display: block;
+}
+
+
+/* IMAGEM DO CINEMA */
+
+
+#cinema-cena {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    opacity: 0;
+}
+
+
+#cinema-cena img {
+    position: absolute;
+
+    width: 150vw;
+    height: 100vh;
+
+    left: -25vw;
+    top: 0;
+
+    object-fit: cover;
+    display: block;
+
+    transform-origin: 72.5% 65.4%;
+}
+
+
+/* FADE IN LENTO DO CINEMA */
+
+
+#take-dois.iniciando #cinema-cena {
+    animation: fadeCinemaIn 5s ease-in forwards;
+}
+
+
+@keyframes fadeCinemaIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* MOVIMENTO E AMPLIAÇÃO SUAVE */
+
+
+#take-dois.iniciando #cinema-cena img {
+    animation: movimentoCinema 16s ease-in-out forwards;
+}
+
+
+@keyframes movimentoCinema {
+    from {
+        transform: translateX(5vw) scale(1);
+    }
+
+    to {
+        transform: translateX(-5vw) scale(1.15);
+    }
+}
+
+
+/* ================================= */
+/* TRANSIÇÃO PARA O PÔSTER           */
+/* ================================= */
+
+
+#take-dois.cinema-saindo #poster-evelyn {
+    animation: fadePosterIn 3.5s ease forwards;
+}
+
+
+@keyframes fadePosterIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+#take-dois.cinema-saindo #cinema-cena {
+    animation: fadeCinemaOut 3.5s ease forwards;
+}
+
+
+@keyframes fadeCinemaOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+/* ================================= */
+/* TEXTOS DO SEGUNDO TAKE            */
+/* ================================= */
+
+
+#texto-cinema,
+#texto-poster {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    padding: 0 40px 8vh;
+    text-align: center;
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+
+#texto-cinema p,
+#texto-poster p {
+    width: 100%;
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    color: #E6E2A5;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+
+    -webkit-text-stroke: 0.7px #000;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 1);
+}
+
+
+/* TEXTO SOBRE O CINEMA */
+
+
+#texto-cinema.aparecendo {
+    animation: fadeInTextoCinema 3s ease forwards;
+}
+
+
+#texto-cinema.desaparecendo {
+    animation: fadeOutTextoCinema 3s ease forwards;
+}
+
+
+/* TEXTO SOBRE O PÔSTER */
+
+
+#texto-poster.aparecendo {
+    animation: fadeInTextoPoster 3.5s ease forwards;
+}
+
+
+@keyframes fadeInTextoCinema {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeOutTextoCinema {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+@keyframes fadeInTextoPoster {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ================================= */
+/* TERCEIRO TAKE: EVELYN NO PALCO    */
+/* ================================= */
+
+
+#take-tres {
+    position: fixed;
+    inset: 0;
+    display: none;
+    overflow: hidden;
+    background: #000;
+    z-index: 40;
+    opacity: 0;
+}
+
+
+#imagem-palco {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+
+#take-tres.iniciando {
+    animation: fadeTakeTres 3s ease forwards;
+}
+
+
+@keyframes fadeTakeTres {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ================================= */
+/* TEXTOS DO TERCEIRO TAKE           */
+/* ================================= */
+
+
+#texto-palco-0,
+#texto-palco-1,
+#texto-palco-2 {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    padding: 0 40px 8vh;
+    text-align: center;
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+
+#texto-palco-0 p,
+#texto-palco-1 p,
+#texto-palco-2 p {
+    width: 100%;
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    color: #E6E2A5;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+
+    -webkit-text-stroke: 0.7px #000;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 1);
+}
+
+
+/* APARECIMENTO DOS TEXTOS */
+
+
+#texto-palco-0.aparecendo,
+#texto-palco-1.aparecendo,
+#texto-palco-2.aparecendo {
+    animation: fadeInPalco 2.5s ease forwards;
+}
+
+
+/* DESAPARECIMENTO DOS TEXTOS */
+
+
+#texto-palco-0.desaparecendo,
+#texto-palco-1.desaparecendo {
+    animation: fadeOutPalco 2.5s ease forwards;
+}
+
+
+@keyframes fadeInPalco {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeOutPalco {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
